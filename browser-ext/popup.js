@@ -7,13 +7,15 @@
 const extensionId = chrome.runtime.id;
 
 const STORAGE_KEYS = {
-    schemaVersion: 'schemaVersion'
+  schemaVersion: "schemaVersion",
 };
-const SPEC_SELECT = /** @type {HTMLSelectElement} */ (document.getElementById('specSelect'));
+const SPEC_SELECT = /** @type {HTMLSelectElement} */ (
+  document.getElementById("specSelect")
+);
 /** @type {SchemaVersion[]} */
-const SPEC_OPTIONS = ['legacy', 'stable', 'beta'];
+const SPEC_OPTIONS = ["legacy", "stable", "beta"];
 /** @type {HTMLSelectElement} */
-const LANG_SELECT = document.querySelector('.langSelect');
+const LANG_SELECT = document.querySelector(".langSelect");
 
 /**
  * Generate injectable code for capturing a value from the contentScript scope and passing back via message
@@ -21,7 +23,7 @@ const LANG_SELECT = document.querySelector('.langSelect');
  * @param {string} [optKey] - Key to use as message identifier. Defaults to valueToCapture
  */
 const createMessageSenderInjectable = (valueToCapture, optKey) => {
-    return `chrome.runtime.sendMessage('${extensionId}', {
+  return `chrome.runtime.sendMessage('${extensionId}', {
         key: '${optKey || valueToCapture}',
         value: ${valueToCapture}
     });`;
@@ -39,7 +41,7 @@ const getLangStringsCode = `(async () => {
         supported,
         user
     }
-    ${createMessageSenderInjectable('payload', 'locales')}
+    ${createMessageSenderInjectable("payload", "locales")}
 })();
 `;
 
@@ -47,7 +49,7 @@ const getLangStringsCode = `(async () => {
  * Get the currently selected lang locale in the selector
  */
 const getSelectedLang = () => {
-    return LANG_SELECT.value;
+  return LANG_SELECT.value;
 };
 
 /**
@@ -56,7 +58,7 @@ const getSelectedLang = () => {
  * @param {SchemaVersion} version
  */
 const getRunAndShowCode = (version) => {
-    return `liToJrInstance.preferLocale = '${getSelectedLang()}';liToJrInstance.parseAndShowOutput('${version}');`;
+  return `liToJrInstance.preferLocale = '${getSelectedLang()}';liToJrInstance.parseAndShowOutput('${version}');`;
 };
 
 /**
@@ -64,10 +66,10 @@ const getRunAndShowCode = (version) => {
  * @param {boolean} isEnabled
  */
 const toggleEnabled = (isEnabled) => {
-    document.querySelectorAll('.toggle').forEach((elem) => {
-        elem.classList.remove(isEnabled ? 'disabled' : 'enabled');
-        elem.classList.add(isEnabled ? 'enabled' : 'disabled');
-    });
+  document.querySelectorAll(".toggle").forEach((elem) => {
+    elem.classList.remove(isEnabled ? "disabled" : "enabled");
+    elem.classList.add(isEnabled ? "enabled" : "disabled");
+  });
 };
 
 /**
@@ -75,20 +77,20 @@ const toggleEnabled = (isEnabled) => {
  * @param {string[]} langs
  */
 const loadLangs = (langs) => {
-    LANG_SELECT.innerHTML = '';
-    langs.forEach((lang) => {
-        const option = document.createElement('option');
-        option.value = lang;
-        option.innerText = lang;
-        LANG_SELECT.appendChild(option);
-    });
-    toggleEnabled(langs.length > 0);
+  LANG_SELECT.innerHTML = "";
+  langs.forEach((lang) => {
+    const option = document.createElement("option");
+    option.value = lang;
+    option.innerText = lang;
+    LANG_SELECT.appendChild(option);
+  });
+  toggleEnabled(langs.length > 0);
 };
 
 const exportVCard = () => {
-    chrome.tabs.executeScript({
-        code: `liToJrInstance.generateVCard()`
-    });
+  chrome.tabs.executeScript({
+    code: `liToJrInstance.generateVCard()`,
+  });
 };
 
 /**
@@ -97,23 +99,23 @@ const exportVCard = () => {
  * @param {string | null} lang
  */
 const setLang = (lang) => {
-    chrome.tabs.executeScript(
-        {
-            code: `liToJrInstance.preferLocale = '${lang}';`
-        },
-        () => {
-            chrome.tabs.executeScript({
-                code: `console.log(liToJrInstance);console.log(liToJrInstance.preferLocale);`
-            });
-        }
-    );
+  chrome.tabs.executeScript(
+    {
+      code: `liToJrInstance.preferLocale = '${lang}';`,
+    },
+    () => {
+      chrome.tabs.executeScript({
+        code: `console.log(liToJrInstance);console.log(liToJrInstance.preferLocale);`,
+      });
+    }
+  );
 };
 
 /** @param {SchemaVersion} version */
 const setSpecVersion = (version) => {
-    chrome.storage.sync.set({
-        [STORAGE_KEYS.schemaVersion]: version
-    });
+  chrome.storage.sync.set({
+    [STORAGE_KEYS.schemaVersion]: version,
+  });
 };
 
 /**
@@ -121,23 +123,23 @@ const setSpecVersion = (version) => {
  * @returns {Promise<SchemaVersion>}
  */
 const getSpecVersion = () => {
-    // Fallback value will be what is already selected in dropdown
-    const fallbackVersion = /** @type {SchemaVersion} */ (SPEC_SELECT.value);
-    return new Promise((res) => {
-        try {
-            chrome.storage.sync.get([STORAGE_KEYS.schemaVersion], (result) => {
-                const storedSetting = result[STORAGE_KEYS.schemaVersion] || '';
-                if (SPEC_OPTIONS.includes(storedSetting)) {
-                    res(storedSetting);
-                } else {
-                    res(fallbackVersion);
-                }
-            });
-        } catch (err) {
-            console.error(err);
-            res(fallbackVersion);
+  // Fallback value will be what is already selected in dropdown
+  const fallbackVersion = /** @type {SchemaVersion} */ (SPEC_SELECT.value);
+  return new Promise((res) => {
+    try {
+      chrome.storage.sync.get([STORAGE_KEYS.schemaVersion], (result) => {
+        const storedSetting = result[STORAGE_KEYS.schemaVersion] || "";
+        if (SPEC_OPTIONS.includes(storedSetting)) {
+          res(storedSetting);
+        } else {
+          res(fallbackVersion);
         }
-    });
+      });
+    } catch (err) {
+      console.error(err);
+      res(fallbackVersion);
+    }
+  });
 };
 
 /**
@@ -147,51 +149,43 @@ const getSpecVersion = () => {
  */
 
 chrome.runtime.onMessage.addListener((message, sender) => {
-    console.log(message);
-    if (sender.id === extensionId && message.key === 'locales') {
-        /** @type {{supported: string[], user: string}} */
-        const { supported, user } = message.value;
-        // Make sure user's own locale comes as first option
-        if (supported.includes(user)) {
-            supported.splice(supported.indexOf(user), 1);
-        }
-        supported.unshift(user);
-        loadLangs(supported);
+  console.log(message);
+  if (sender.id === extensionId && message.key === "locales") {
+    /** @type {{supported: string[], user: string}} */
+    const { supported, user } = message.value;
+    // Make sure user's own locale comes as first option
+    if (supported.includes(user)) {
+      supported.splice(supported.indexOf(user), 1);
     }
+    supported.unshift(user);
+    loadLangs(supported);
+  }
 });
 
-document.getElementById('liToJsonButton').addEventListener('click', async () => {
-    const versionOption = await getSpecVersion();
-    const runAndShowCode = getRunAndShowCode(versionOption);
-    chrome.tabs.executeScript(
-        {
-            code: `${runAndShowCode}`
-        },
-        () => {
-            setTimeout(() => {
-                // Close popup
-                window.close();
-            }, 700);
-        }
-    );
+document.getElementById("liToJsonButton").addEventListener("click", () => {
+  chrome.tabs.executeScript({
+    code: `liToJrInstance.preferLocale = '${getSelectedLang()}';liToJrInstance.parseAndDownload();`,
+  });
 });
 
-document.getElementById('liToJsonDownloadButton').addEventListener('click', () => {
+document
+  .getElementById("liToJsonDownloadButton")
+  .addEventListener("click", () => {
     chrome.tabs.executeScript({
-        code: `liToJrInstance.preferLocale = '${getSelectedLang()}';liToJrInstance.parseAndDownload();`
+      code: `liToJrInstance.preferLocale = '${getSelectedLang()}';liToJrInstance.parseAndDownload();`,
     });
+  });
+
+LANG_SELECT.addEventListener("change", () => {
+  setLang(getSelectedLang());
 });
 
-LANG_SELECT.addEventListener('change', () => {
-    setLang(getSelectedLang());
+document.getElementById("vcardExportButton").addEventListener("click", () => {
+  exportVCard();
 });
 
-document.getElementById('vcardExportButton').addEventListener('click', () => {
-    exportVCard();
-});
-
-SPEC_SELECT.addEventListener('change', () => {
-    setSpecVersion(/** @type {SchemaVersion} */ (SPEC_SELECT.value));
+SPEC_SELECT.addEventListener("change", () => {
+  setSpecVersion(/** @type {SchemaVersion} */ (SPEC_SELECT.value));
 });
 
 /**
@@ -199,19 +193,20 @@ SPEC_SELECT.addEventListener('change', () => {
  * =           Init            =
  * =============================
  */
-document.getElementById('versionDisplay').innerText = chrome.runtime.getManifest().version;
+document.getElementById("versionDisplay").innerText =
+  chrome.runtime.getManifest().version;
 
 chrome.tabs.executeScript(
-    {
-        file: 'main.js'
-    },
-    () => {
-        chrome.tabs.executeScript({
-            code: `${createMainInstanceCode}${getLangStringsCode}`
-        });
-    }
+  {
+    file: "main.js",
+  },
+  () => {
+    chrome.tabs.executeScript({
+      code: `${createMainInstanceCode}${getLangStringsCode}`,
+    });
+  }
 );
 
 getSpecVersion().then((spec) => {
-    SPEC_SELECT.value = spec;
+  SPEC_SELECT.value = spec;
 });
