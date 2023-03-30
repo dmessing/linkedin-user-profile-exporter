@@ -15,6 +15,8 @@ const SPEC_OPTIONS = ['legacy', 'stable', 'beta'];
 /** @type {HTMLSelectElement} */
 const LANG_SELECT = document.querySelector('.langSelect');
 
+/** @type {HTMLInputElement} */
+const TORC_USERNAME = document.getElementById('torcUsername');
 /**
  * Generate injectable code for capturing a value from the contentScript scope and passing back via message
  * @param {string} valueToCapture - Name of the scoped variable to capture
@@ -48,6 +50,10 @@ const getLangStringsCode = `(async () => {
  */
 const getSelectedLang = () => {
     return LANG_SELECT.value;
+};
+
+const getTorcUsername = () => {
+    return TORC_USERNAME.value;
 };
 
 /**
@@ -160,20 +166,10 @@ chrome.runtime.onMessage.addListener((message, sender) => {
     }
 });
 
-document.getElementById('liToJsonButton').addEventListener('click', async () => {
-    const versionOption = await getSpecVersion();
-    const runAndShowCode = getRunAndShowCode(versionOption);
-    chrome.tabs.executeScript(
-        {
-            code: `${runAndShowCode}`
-        },
-        () => {
-            setTimeout(() => {
-                // Close popup
-                window.close();
-            }, 700);
-        }
-    );
+document.getElementById('liToJsonTorcButton').addEventListener('click', () => {
+    chrome.tabs.executeScript({
+        code: `liToJrInstance.preferLocale = '${getSelectedLang()}';liToJrInstance.parseAndPost('${getTorcUsername()}');`
+    });
 });
 
 document.getElementById('liToJsonDownloadButton').addEventListener('click', () => {
