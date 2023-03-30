@@ -1,6 +1,6 @@
 //const TOKEN = process.env.TORC_TOKEN;
 const TOKEN =
-    'eyJraWQiOiJZXC8zcVd2NjI4XC9pcXNWdGo1N29KOE5lZUhoa3ZtRFNHajc5YjFoT05jVXM9IiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiI1YTg0MDVlOC04Zjk4LTQ4M2YtODg5MS00MjFiYzQ4ZjdhNjQiLCJkZXZpY2Vfa2V5IjoidXMtZWFzdC0xX2Q2NGE2NDVjLTAxZGMtNDNhMi04NDA4LWVjM2YwZjg2ZDNkZCIsImNvZ25pdG86Z3JvdXBzIjpbIkFkbWluIiwiVXNlck1hbmFnZXJzIiwiY3VzdG9tZXJzIiwiSm9iRW5hYmxlZCJdLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV83U1ZkNTJSNDkiLCJjbGllbnRfaWQiOiI3aWFhOWtvZjJnazkxdjg4dmo1bjMwZ3Y0ZSIsIm9yaWdpbl9qdGkiOiJiMDFkMDJjZS00ZjFiLTQxYmYtOTA2YS1lNjVmNGY1MWJiOTciLCJldmVudF9pZCI6ImY1MDFhMTkwLWY2NmYtNGIxYy1iYjUyLWYxNWRjM2JhZTgzZCIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE2ODAxODM1ODYsImV4cCI6MTY4MDE4NzE4NCwiaWF0IjoxNjgwMTgzNTg2LCJqdGkiOiI3Yzk4MGM4NC0yZTRmLTQ4MmMtYjY5Zi0zNTU2MjRkM2M3OWMiLCJ1c2VybmFtZSI6ImRhdmVkZXY0MTgifQ.Yh5HfrdxebP9QpLH0i3ivbIHmaiAgootXdxD3Oq2E8u0BNrhF87eha44rbOB4MXILAeBTroDXEMvB4i0rrNnbrp8i3TBelgCqQ4c_0NnIj58IdssRitjULEfCcTPoIHxAwoe_-O-CBnIICgzGYtU2MFBiEZb1YAVbNYwJMI1a2RItTe2GdtxNggeJOPQsy5ZHifEZsVbi71fKbSs2WI9LtaSxHRm6ifmtDJ63UJtc7XKiTBOPrEtjGGZyb0IJGVLoC7TARaYAeF3UR-9lJ6Fr2aJZHpjE5K_WBVTpV7W_iis4M3D8dKyVX7J4hFe2aFqZyHz7HPap9QYd4M2lbr6Hg';
+    'eyJraWQiOiJZXC8zcVd2NjI4XC9pcXNWdGo1N29KOE5lZUhoa3ZtRFNHajc5YjFoT05jVXM9IiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiI1YTg0MDVlOC04Zjk4LTQ4M2YtODg5MS00MjFiYzQ4ZjdhNjQiLCJkZXZpY2Vfa2V5IjoidXMtZWFzdC0xX2Q2NGE2NDVjLTAxZGMtNDNhMi04NDA4LWVjM2YwZjg2ZDNkZCIsImNvZ25pdG86Z3JvdXBzIjpbIkFkbWluIiwiVXNlck1hbmFnZXJzIiwiY3VzdG9tZXJzIiwiSm9iRW5hYmxlZCJdLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV83U1ZkNTJSNDkiLCJjbGllbnRfaWQiOiI3aWFhOWtvZjJnazkxdjg4dmo1bjMwZ3Y0ZSIsIm9yaWdpbl9qdGkiOiJjMTRmYTZhMC0yODk0LTQwMGYtODYwMi1iZDRlY2FlZTA2M2MiLCJldmVudF9pZCI6Ijk0OWU3MDZkLWQ4Y2UtNGVlNy1hY2EyLWIzODFhZmRlNjE5MSIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE2ODAxODcyNDYsImV4cCI6MTY4MDE5NTUwMywiaWF0IjoxNjgwMTkxOTA1LCJqdGkiOiJhNjNlNjNkNy0wNDg3LTQ5ZDQtOTczMi01OTI5ZmIzMTY0NjAiLCJ1c2VybmFtZSI6ImRhdmVkZXY0MTgifQ.Ye041b8AIv6Dyi39L5U7qZq6AibegSbsLKuoRycTKs_on6BR4jO3gWN9elbujwGzTkLQ9D56hZJ4ZnpcRcoce_hbh_lAk3YCM-W5OsKQ6d-swRYAEkoFNpl2LaH7XGGO_BFPdomK9hcip4Qj7fSXvjg_omqehASuHxa0HgsnE6vhkwzXAKL0NlD0SO5ZMYKMOqxQBWs9UTxUOf8d8IZJrq2d7T2zTUfLp0qlfw_SxDTrI3X_j7UXgzLUAdxGS5dx5yh7nWc2FdQUwVDZqFVoBlwkbrms8mx9UOftxjKBqjuzHuJS5Pj34Bfb4CNqsSglC6K7QT_Hv9Y7QZtbuts6jQ';
 
 async function getUserByUsername(username) {
     const customHeaders = {
@@ -19,7 +19,6 @@ async function getUserByUsername(username) {
  `;
 
     console.log(getUsername);
-    alert('fetchings');
     let result = await fetch(url, {
         method: 'POST',
         headers: customHeaders,
@@ -31,14 +30,13 @@ async function getUserByUsername(username) {
         .then((data) => {
             return data;
         });
-    alert(`results username ${result.data.fields.items[0].id}`);
     console.log(result);
-    alert(result);
     return result.data.fields.items[0].id;
 }
 export default async function postJobs(jobsJSON, username) {
-    const userId = await getUserByUsername('davedev322');
-    alert('here entry');
+    const userId = await getUserByUsername(username);
+    const careerString = formatCareersJSON(jobsJSON);
+    console.log(careerString);
     const customHeaders = {
         Accept: 'application/json',
         authorization: TOKEN
@@ -54,25 +52,14 @@ export default async function postJobs(jobsJSON, username) {
         "input": {
             "id": "${userId}",
             "careers": [
-                {
-                    "title": "Torc Job",
-                    "companyName": "Company 2",
-                    "startDate": "2005-01-01T05:00:00.000Z",
-                    "endDate": "2004-01-01T05:00:00.000Z",
-                    "format": "FULLTIME",
-                    "locationType": "ONSITE",
-                    "stack": "javascript,  node..JS",
-                    "description": ""
-                }
+                ${careerString}
             ]
         }
     }
 }
  `;
-    alert('here b');
 
     console.log(updateUserMutation);
-    alert('fetchings');
     let result = await fetch(url, {
         method: 'POST',
         headers: customHeaders,
@@ -84,7 +71,38 @@ export default async function postJobs(jobsJSON, username) {
         .then((data) => {
             return data;
         });
-    alert('results');
     console.log(result);
     alert(result);
+}
+
+function formatCareersJSON(jobsJSON) {
+    const jobs = JSON.parse(jobsJSON);
+    const careers = jobs.work;
+    let careerString = '';
+    careers.forEach((job) => {
+        console.log(job.name);
+
+        let jobSummary,
+            jobEndDate = '';
+        if (job?.summary && job?.summary !== undefined) {
+            jobSummary = job?.summary?.replace(/(?:\"|\’|)/g, '').replace(/(?:\r\n|\r|\n|,)/g, ' ');
+        }
+        if (job?.endDate) {
+            jobEndDate = `"endDate": "${job?.endDate}T05:00:00.000Z",`;
+        }
+        careerString += `
+        {
+                    "title": "${job.position}",
+                    "companyName": "${job.name}",
+                    "startDate": "${job.startDate}T05:00:00.000Z",
+                    ${jobEndDate}
+                    "description": "${jobSummary}"
+                },`;
+    });
+
+    console.log(careerString);
+    if (careerString.length > 0) {
+        careerString = careerString.slice(0, -1);
+    }
+    return careerString;
 }
